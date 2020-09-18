@@ -23,10 +23,10 @@ fileLoader.load( url, (file) => {
 
 [ 'left', 'top', 'right', 'bottom' ].forEach( (direction) => {
 
-	World.addBodyTo( direction, null, 'rectangle', [ -8, 0, 1, 10 ], { isStatic: true } );
-	World.addBodyTo( direction, null, 'rectangle', [ 0, -8, 10, 1 ], { isStatic: true } );
-	World.addBodyTo( direction, null, 'rectangle', [ 8, 0, 1, 10 ], { isStatic: true } );
-	World.addBodyTo( direction, null, 'rectangle', [ 0, 8, 10, 1 ], { isStatic: true } );
+	World.addRectangleHelper( direction, -8, 0, 1, 16 );
+	World.addRectangleHelper( direction, 0, -8, 16, 1 );
+	World.addRectangleHelper( direction, 8, 0, 1, 16 );
+	World.addRectangleHelper( direction, 0, 8, 16, 1 );
 
 })
 

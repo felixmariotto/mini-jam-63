@@ -96,6 +96,21 @@ function add( sceneName, mesh ) {
 
 }
 
+// helper function that create and add a box quickly
+function addBoxTo( sceneName, x, y, width, height ) {
+
+	const mesh = new THREE.Mesh(
+		new THREE.BoxBufferGeometry( width, height, 3 ),
+		new THREE.MeshNormalMaterial()
+	);
+
+	mesh.position.x = x;
+	mesh.position.y = y;
+
+	scenes[ sceneName ].add( mesh );
+
+}
+
 //
 
 function registerHeroMesh( mesh ) { heroMesh = mesh }
@@ -106,5 +121,6 @@ export default {
 	animate,
 	add,
 	updateBody,
-	registerHeroMesh
+	registerHeroMesh,
+	addBoxTo
 }

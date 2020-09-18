@@ -80,6 +80,17 @@ function addBodyTo( engineName, mesh, shape, dimensions, options ) {
 
 }
 
+// helper function to create both a mesh and a body quickly
+function addRectangleHelper( engineName, x, y, width, height ) {
+
+	const body = Bodies.rectangle( x, y, width, height, { isStatic: true } );
+
+	World.add( engines[ engineName ].world, body );
+
+	ThreeWorld.addBoxTo( engineName, x, y, width, height );
+
+}
+
 // create hero body
 function createHeroBody( mesh ) {
 
@@ -146,5 +157,6 @@ function animate( deltaTime, dimension ) {
 export default {
 	animate,
 	addBodyTo,
-	createHeroBody
+	createHeroBody,
+	addRectangleHelper
 }
