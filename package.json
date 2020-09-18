@@ -16,7 +16,7 @@
   "license": "MIT",
   "dependencies": {
     "express": "^4.17.1",
-    "planck-js": "^0.3.22",
+    "matter-js": "^0.14.2",
     "three": "^0.117.1"
   },
   "devDependencies": {
