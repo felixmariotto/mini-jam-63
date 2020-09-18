@@ -24,6 +24,9 @@ function createWorld( name ) {
 	// create an engine
 	const engine = Engine.create();
 
+	// reduce gravity
+	engine.world.gravity.scale = 0.00001
+
 	engine.name = name;
 
 	// create a body with passed parameters + add it to the engine's world
@@ -33,17 +36,20 @@ function createWorld( name ) {
 
 		World.add( engine.world, body );
 
+		return body
+
 	}
 
 	return engine
 
 }
 
-//
-
+// create a body and assign the passed mesh to this body
 function addBodyTo( engineName, mesh, shape, dimensions, options ) {
 
-	engines[ engineName ].addMyBody( shape, dimensions, options );
+	const body = engines[ engineName ].addMyBody( shape, dimensions, options );
+
+	body.mesh = mesh;
 
 }
 

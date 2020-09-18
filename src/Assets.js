@@ -25,9 +25,9 @@ const box = new THREE.Mesh(
 	new THREE.MeshNormalMaterial()
 );
 
-World.addBodyTo( 'left', box, 'rectangle', [ 400, 200, 80, 80 ] );
-World.addBodyTo( 'left', box, 'rectangle', [ 450, 50, 80, 80 ] );
-World.addBodyTo( 'left', box, 'rectangle', [ 400, 610, 810, 60 ], { isStatic: true } );
+World.addBodyTo( 'left', box, 'rectangle', [ 0, 0, 3, 3 ] );
+// World.addBodyTo( 'left', box, 'rectangle', [ 450, 50, 80, 80 ] );
+// World.addBodyTo( 'left', box, 'rectangle', [ 400, 610, 810, 60 ], { isStatic: true } );
 
 ThreeWorld.add( 'left', box );
 

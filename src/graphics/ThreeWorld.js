@@ -64,7 +64,8 @@ function animate( deltaTime ) {
 
 function updateBody( engine, body ) {
 
-	// console.log( body.position )
+	body.mesh.position.x = body.position.x;
+	body.mesh.position.y = body.position.y;
 
 }
 
