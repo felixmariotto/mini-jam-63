@@ -24,8 +24,28 @@ function createWorld( name ) {
 	// create an engine
 	const engine = Engine.create();
 
-	// reduce gravity
-	engine.world.gravity.scale = 0.00001
+	// set gravity
+	switch ( name ) {
+
+	case 'left' :
+		engine.world.gravity.x = 1;
+		engine.world.gravity.y = 0;
+		engine.world.gravity.scale = -0.00001;
+		break;
+
+	case 'top' :
+		engine.world.gravity.scale = -0.00001;
+		break;
+
+	case 'right' :
+		engine.world.gravity.scale = -0.00001;
+		break;
+
+	case 'bottom' :
+		engine.world.gravity.scale = -0.00001;
+		break
+
+	}
 
 	engine.name = name;
 

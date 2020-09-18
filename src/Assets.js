@@ -20,16 +20,30 @@ fileLoader.load( url, (file) => {
 */
 
 // do like gltf was loaded, then :
-const box = new THREE.Mesh(
+const leftBox = new THREE.Mesh(
 	new THREE.BoxBufferGeometry( 3, 3, 3 ),
 	new THREE.MeshNormalMaterial()
 );
 
-World.addBodyTo( 'left', box, 'rectangle', [ 0, 0, 3, 3 ] );
-// World.addBodyTo( 'left', box, 'rectangle', [ 450, 50, 80, 80 ] );
-// World.addBodyTo( 'left', box, 'rectangle', [ 400, 610, 810, 60 ], { isStatic: true } );
+World.addBodyTo( 'left', leftBox, 'rectangle', [ 0, 0, 3, 3 ] );
+World.addBodyTo( 'left', null, 'rectangle', [ -8, 0, 1, 10 ], { isStatic: true } );
 
-ThreeWorld.add( 'left', box );
+ThreeWorld.add( 'left', leftBox );
+
+// create bottom box
+const bottomBox = new THREE.Mesh(
+	new THREE.BoxBufferGeometry( 3, 3, 3 ),
+	new THREE.MeshNormalMaterial()
+);
+
+World.addBodyTo( 'bottom', bottomBox, 'rectangle', [ 0, 0, 3, 3 ] );
+World.addBodyTo( 'bottom', null, 'rectangle', [ 0, -8, 10, 1 ], { isStatic: true } );
+
+ThreeWorld.add( 'bottom', bottomBox );
+
+// create hero box :
+
+
 
 //
 
