@@ -6,15 +6,23 @@ import ThreeWorld from './graphics/ThreeWorld.js';
 
 //
 
-let startTime, lastTime, nowTime, deltaTime;
+let lastTime, nowTime, deltaTime, gameIsPaused;
 
 //
 
 function startGame() {
 
-	startTime = lastTime = Date.now();
+	lastTime = Date.now();
+
+	gameIsPaused = false;
 
 	loop()
+
+}
+
+function pauseGame() {
+
+	gameIsPaused = true;
 
 }
 
@@ -22,7 +30,9 @@ function startGame() {
 
 function loop() {
 
-	requestAnimationFrame( loop );
+	if ( gameIsPaused ) return
+
+	window.requestAnimationFrame( loop );
 
 	// TIME
 
@@ -42,5 +52,6 @@ function loop() {
 //
 
 export default {
-	startGame
+	startGame,
+	pauseGame
 }
