@@ -43,7 +43,14 @@ ThreeWorld.add( 'bottom', bottomBox );
 
 // create hero box :
 
+const heroMesh = new THREE.Mesh(
+	new THREE.BoxBufferGeometry( 3, 3, 3 ),
+	new THREE.MeshNormalMaterial()
+);
 
+World.createHeroBody( heroMesh );
+
+ThreeWorld.addHeroMesh( heroMesh );
 
 //
 

@@ -42,10 +42,16 @@ function loop() {
 
 	lastTime = nowTime;
 
+	// CHECK IN WHAT DIMENSION THE HERO IS
+
+	const dimension = UI.checkDimension();
+
+	console.log( dimension )
+
 	// UPDATES
 
-	World.animate( deltaTime );
-	ThreeWorld.animate( deltaTime );
+	World.animate( deltaTime, dimension );
+	ThreeWorld.animate( deltaTime, dimension );
 
 }
 

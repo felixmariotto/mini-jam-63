@@ -73,6 +73,13 @@ function addBodyTo( engineName, mesh, shape, dimensions, options ) {
 
 }
 
+// create hero body
+function createHeroBody( mesh ) {
+
+
+
+}
+
 //
 
 function animate( deltaTime ) {
@@ -97,5 +104,6 @@ function animate( deltaTime ) {
 
 export default {
 	animate,
-	addBodyTo
+	addBodyTo,
+	createHeroBody
 }

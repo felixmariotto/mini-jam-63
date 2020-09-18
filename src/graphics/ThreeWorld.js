@@ -81,8 +81,17 @@ function add( sceneName, mesh ) {
 
 //
 
+function addHeroMesh( mesh ) {
+
+
+
+}
+
+//
+
 export default {
 	animate,
 	add,
-	updateBody
+	updateBody,
+	addHeroMesh
 }
