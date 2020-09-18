@@ -58,45 +58,60 @@
 
 		/* SCENES */
 
-		#scenes {
+		#game-square-container {
 			position: fixed;
 			top: 0;
-			left: 0;
+			left: 50vw;
+			top: 50vh;
+			transform: translate( -50%, -50% );
+			height: 100vh;
+			max-height: 100vw;
+			width: 100vw;
+			max-width: 100vh;
+			overflow: hidden;
 			z-index: -1;
-			transform: translate( -50vw, -50vh );
 		}
 
-			.scene-mask {
-				position: absolute;
+			#scenes {
+				position: relative;
 				top: 0;
 				left: 0;
-				height: 200vh;
-				width: 200vw;
+				height: 100%;
+				width: 100%;
+				transform: translate( -50%, -50% );
 			}
 
-				.scene-mask.left {
-					clip-path: polygon(50% 50%, 0 100%, 0 0 );
+				.scene-mask {
+					position: absolute;
+					top: 0;
+					left: 0;
+					height: 200%;
+					width: 200%;
 				}
 
-				.scene-mask.top {
-					clip-path: polygon( 50% 50%, 0 0, 100% 0 );
-				}
-
-				.scene-mask.right {
-					clip-path: polygon( 50% 50%, 100% 0, 100% 100% );
-				}
-
-				.scene-mask.bottom {
-					clip-path: polygon( 50% 50%, 100% 100%, 0 100% );
-				}
-
-					canvas {
-						position: fixed;
-						top: 0;
-						left: 0;
-						height: 200vh;
-						width: 200vw;
+					.scene-mask.left {
+						clip-path: polygon(50% 50%, 0 100%, 0 0 );
 					}
+
+					.scene-mask.top {
+						clip-path: polygon( 50% 50%, 0 0, 100% 0 );
+					}
+
+					.scene-mask.right {
+						clip-path: polygon( 50% 50%, 100% 0, 100% 100% );
+					}
+
+					.scene-mask.bottom {
+						clip-path: polygon( 50% 50%, 100% 100%, 0 100% );
+					}
+
+						canvas {
+							position: fixed;
+							top: 0;
+							left: 0;
+							height: 200vh;
+							width: 200vw;
+						}
 
 	</style>
 </head>
@@ -108,18 +123,20 @@
 			<button id="start-btn">start</button>
 		</div>
 	</div>
-	<div id="scenes">
-		<div class="scene-mask left">
-			<canvas id="scene-left"></canvas>
-		</div>
-		<div class="scene-mask top">
-			<canvas id="scene-top"></canvas>
-		</div>
-		<div class="scene-mask right">
-			<canvas id="scene-right"></canvas>
-		</div>
-		<div class="scene-mask bottom">
-			<canvas id="scene-bottom"></canvas>
+	<div id="game-square-container">
+		<div id="scenes">
+			<div class="scene-mask left">
+				<canvas id="scene-left"></canvas>
+			</div>
+			<div class="scene-mask top">
+				<canvas id="scene-top"></canvas>
+			</div>
+			<div class="scene-mask right">
+				<canvas id="scene-right"></canvas>
+			</div>
+			<div class="scene-mask bottom">
+				<canvas id="scene-bottom"></canvas>
+			</div>
 		</div>
 	</div>
 </body>
