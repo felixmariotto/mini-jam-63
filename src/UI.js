@@ -46,7 +46,8 @@ domSquareContainer.addEventListener('mousemove', (e) => {
 		y: ( e.y - rect.top ) / rect.height
 	};
 
-	domScenes.style.transform = `translate( ${ (1 - pos.x) * -100 }%, ${ (1 - pos.y) * -100 }% )`
+	domScenes.style.left = ( (1 - pos.x) * -100 ) + '%';
+	domScenes.style.top = ( (1 - pos.y) * -100 ) + '%';
 
 })
 

@@ -60,10 +60,6 @@
 
 		#game-square-container {
 			position: fixed;
-			top: 0;
-			left: 50vw;
-			top: 50vh;
-			transform: translate( -50%, -50% );
 			height: 100vh;
 			max-height: 100vw;
 			width: 100vw;
@@ -78,7 +74,6 @@
 				left: 0;
 				height: 100%;
 				width: 100%;
-				transform: translate( -50%, -50% );
 			}
 
 				.scene-mask {
@@ -109,8 +104,10 @@
 							position: fixed;
 							top: 0;
 							left: 0;
-							height: 200vh;
-							width: 200vw;
+							height: 100vh;
+							max-height: 100vw;
+							width: 100vw;
+							max-width: 100vh;
 						}
 
 	</style>

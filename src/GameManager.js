@@ -38,7 +38,7 @@ function loop() {
 
 	nowTime = Date.now();
 
-	deltaTime = lastTime - nowTime;
+	deltaTime = nowTime - lastTime;
 
 	lastTime = nowTime;
 
