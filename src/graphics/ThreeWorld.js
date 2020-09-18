@@ -13,7 +13,7 @@ domBottomScene.style.backgroundColor = "#ff0000";
 
 function animate( deltaTime ) {
 
-	console.log( deltaTime )
+	// console.log( deltaTime )
 
 }
 
