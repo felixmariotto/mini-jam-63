@@ -3,6 +3,11 @@ import * as THREE from 'three';
 
 //
 
+let heroMesh;
+let lastDimension;
+
+//
+
 const domLeftCanvas = document.querySelector('.scene-mask.left canvas');
 const domTopCanvas = document.querySelector('.scene-mask.top canvas');
 const domRightCanvas = document.querySelector('.scene-mask.right canvas');
@@ -17,8 +22,8 @@ const scenes = {
 	bottom: createScene( 'bottom', domBottomCanvas, "#17191b" )
 };
 
-const camera = new THREE.PerspectiveCamera( 50, 1, 0.1, 50 );
-camera.position.z = 20;
+const camera = new THREE.PerspectiveCamera( 30, 1, 0.1, 100 );
+camera.position.z = 70;
 camera.lookAt( 0, 0, 0 );
 
 function createScene( name, canvas, backgroundColor ) {
@@ -48,7 +53,19 @@ function createScene( name, canvas, backgroundColor ) {
 
 //
 
-function animate( deltaTime ) {
+function animate( deltaTime, dimension ) {
+
+	// update hero's scene if needed
+
+	if ( dimension !== lastDimension ) {
+
+		scenes[ dimension ].add( heroMesh );
+
+		lastDimension = dimension;
+
+	};
+
+	// render scenes
 
 	for ( let sceneName of Object.keys( scenes ) ) {
 
@@ -81,11 +98,7 @@ function add( sceneName, mesh ) {
 
 //
 
-function addHeroMesh( mesh ) {
-
-
-
-}
+function registerHeroMesh( mesh ) { heroMesh = mesh }
 
 //
 
@@ -93,5 +106,5 @@ export default {
 	animate,
 	add,
 	updateBody,
-	addHeroMesh
+	registerHeroMesh
 }

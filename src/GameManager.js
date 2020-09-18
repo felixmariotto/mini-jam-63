@@ -46,8 +46,6 @@ function loop() {
 
 	const dimension = UI.checkDimension();
 
-	console.log( dimension )
-
 	// UPDATES
 
 	World.animate( deltaTime, dimension );

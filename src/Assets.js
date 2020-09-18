@@ -19,27 +19,16 @@ fileLoader.load( url, (file) => {
 })
 */
 
-// do like gltf was loaded, then :
-const leftBox = new THREE.Mesh(
-	new THREE.BoxBufferGeometry( 3, 3, 3 ),
-	new THREE.MeshNormalMaterial()
-);
+// add walls
 
-World.addBodyTo( 'left', leftBox, 'rectangle', [ 0, 0, 3, 3 ] );
-World.addBodyTo( 'left', null, 'rectangle', [ -8, 0, 1, 10 ], { isStatic: true } );
+[ 'left', 'top', 'right', 'bottom' ].forEach( (direction) => {
 
-ThreeWorld.add( 'left', leftBox );
+	World.addBodyTo( direction, null, 'rectangle', [ -8, 0, 1, 10 ], { isStatic: true } );
+	World.addBodyTo( direction, null, 'rectangle', [ 0, -8, 10, 1 ], { isStatic: true } );
+	World.addBodyTo( direction, null, 'rectangle', [ 8, 0, 1, 10 ], { isStatic: true } );
+	World.addBodyTo( direction, null, 'rectangle', [ 0, 8, 10, 1 ], { isStatic: true } );
 
-// create bottom box
-const bottomBox = new THREE.Mesh(
-	new THREE.BoxBufferGeometry( 3, 3, 3 ),
-	new THREE.MeshNormalMaterial()
-);
-
-World.addBodyTo( 'bottom', bottomBox, 'rectangle', [ 0, 0, 3, 3 ] );
-World.addBodyTo( 'bottom', null, 'rectangle', [ 0, -8, 10, 1 ], { isStatic: true } );
-
-ThreeWorld.add( 'bottom', bottomBox );
+})
 
 // create hero box :
 
@@ -50,7 +39,7 @@ const heroMesh = new THREE.Mesh(
 
 World.createHeroBody( heroMesh );
 
-ThreeWorld.addHeroMesh( heroMesh );
+ThreeWorld.registerHeroMesh( heroMesh );
 
 //
 
