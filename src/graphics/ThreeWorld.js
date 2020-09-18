@@ -31,6 +31,17 @@ function createScene( name, canvas, backgroundColor ) {
 	renderer.setSize( canvas.scrollWidth, canvas.scrollHeight );
 	scene.renderer = renderer;
 
+	window.addEventListener( 'resize', ()=> {
+
+		const size = Math.min( window.innerWidth, window.innerHeight );
+
+		canvas.style.height = size + 'px';
+		canvas.style.width = size + 'px';
+
+		renderer.setSize( canvas.scrollWidth, canvas.scrollHeight );
+
+	});
+
 	return scene
 
 }
