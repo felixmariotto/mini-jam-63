@@ -56,6 +56,49 @@
 				padding: 50px;
 			}
 
+		/* SCENES */
+
+		#scenes {
+			position: fixed;
+			top: 0;
+			left: 0;
+			height: 100vh;
+			width: 100vw;
+			z-index: -1;
+		}
+
+			.scene-mask {
+				position: absolute;
+				top: 0;
+				left: 0;
+				height: 100vh;
+				width: 100vw;
+			}
+
+				.scene-mask.left {
+					clip-path: polygon(50% 50%, 0 100%, 0 0 );
+				}
+
+				.scene-mask.top {
+					clip-path: polygon( 50% 50%, 0 0, 100% 0 );
+				}
+
+				.scene-mask.right {
+					clip-path: polygon( 50% 50%, 100% 0, 100% 100% );
+				}
+
+				.scene-mask.bottom {
+					clip-path: polygon( 50% 50%, 100% 100%, 0 100% );
+				}
+
+					canvas {
+						position: fixed;
+						top: 0;
+						left: 0;
+						height: 100vh;
+						width: 100vw;
+					}
+
 	</style>
 </head>
 
@@ -64,6 +107,20 @@
 		<h1>title</h1>
 		<div id="homescreen-menu">
 			<button id="start-btn">start</button>
+		</div>
+	</div>
+	<div id="scenes">
+		<div class="scene-mask left">
+			<canvas id="scene-left"></canvas>
+		</div>
+		<div class="scene-mask top">
+			<canvas id="scene-top"></canvas>
+		</div>
+		<div class="scene-mask right">
+			<canvas id="scene-right"></canvas>
+		</div>
+		<div class="scene-mask bottom">
+			<canvas id="scene-bottom"></canvas>
 		</div>
 	</div>
 </body>
