@@ -28,6 +28,8 @@ fileLoader.load( url, (file) => {
 	World.addRectangleHelper( direction, 8, 0, 1, 16 );
 	World.addRectangleHelper( direction, 0, 8, 16, 1 );
 
+	World.addRectangleHelper( direction, 1, 1, 3, 3, true );
+
 })
 
 // create hero box :

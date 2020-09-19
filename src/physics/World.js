@@ -91,6 +91,8 @@ function addRectangleHelper( engineName, x, y, width, height, notStatic ) {
 
 	const mesh = ThreeWorld.addBoxTo( engineName, x, y, width, height );
 
+	if ( notStatic ) body.mesh = mesh;
+
 	Events.on( engines[ engineName ], 'collisionStart', function(event) {
         var pairs = event.pairs;
 
