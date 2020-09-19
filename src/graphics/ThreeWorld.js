@@ -58,6 +58,13 @@ function createScene( name, canvas, backgroundColor ) {
 
 	});
 
+	// TEMPORARY
+
+	const ambLight = new THREE.AmbientLight( 0xffffff, 0.5 );
+	const directionalLight = new THREE.DirectionalLight( 0xffffff, 0.5 );
+	directionalLight.position.z = 5;
+	scene.add( ambLight, directionalLight );
+
 	return scene
 
 }
@@ -136,7 +143,7 @@ function addBoxTo( sceneName, position, dimension, rotationZ ) {
 
 	const mesh = new THREE.Mesh(
 		new THREE.BoxBufferGeometry( dimension.x, dimension.y, dimension.z ),
-		new THREE.MeshBasicMaterial({ color: BOX_COLORS[ sceneName ] })
+		new THREE.MeshLambertMaterial({ color: BOX_COLORS[ sceneName ] })
 	);
 
 	mesh.position.x = position.x;

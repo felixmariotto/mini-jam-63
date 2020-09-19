@@ -9,9 +9,11 @@ let lastDimension;
 
 // factor to smooth the 'pull-out' to help unstuck the body
 // see https://github.com/liabru/matter-js/issues/915
-const STUCK_DEBUG_FACTOR = 1;
+const STUCK_DEBUG_FACTOR = 0.2;
 
 const HEIGHT_WATER = 10;
+
+const PLAYER_START = { x: 170, y: 5 };
 
 // module aliases
 
@@ -67,9 +69,9 @@ function createWorld( name ) {
 	switch ( name ) {
 
 	case 'left' :
-		engine.world.gravity.x = -0.5;
-		engine.world.gravity.y = -0.5;
-		engine.world.gravity.scale = 0.000015;
+		engine.world.gravity.x = -0.6;
+		engine.world.gravity.y = -0.4;
+		engine.world.gravity.scale = 0.000025;
 		break;
 
 	case 'top' :
@@ -77,14 +79,14 @@ function createWorld( name ) {
 		break;
 
 	case 'right' :
-		engine.world.gravity.x = 0.5;
-		engine.world.gravity.y = -0.5;
-		engine.world.gravity.scale = 0.000015;
+		engine.world.gravity.x = 0.6;
+		engine.world.gravity.y = -0.4;
+		engine.world.gravity.scale = 0.000025;
 		break;
 
 	case 'bottom' :
 		engine.world.gravity.y = -1;
-		engine.world.gravity.scale = 0.000015;
+		engine.world.gravity.scale = 0.000025;
 		break
 
 	}
@@ -184,7 +186,7 @@ function createBox( engineName, position, dimension, isStatic, rotationZ, mesh )
 // create hero body
 function createHeroBody( mesh ) {
 
-	heroBody = Bodies.rectangle( -3, -3, 3, 3 );
+	heroBody = Bodies.rectangle( PLAYER_START.x, PLAYER_START.y, 3, 3 );
 
 	heroBody.isHero = true;
 
