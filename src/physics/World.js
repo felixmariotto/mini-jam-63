@@ -100,23 +100,8 @@ function addRectangleHelper( engineName, x, y, width, height, notStatic ) {
 	if ( notStatic ) body.mesh = mesh;
 
 	Events.on( engines[ engineName ], 'collisionActive', function(event) {
-        var pairs = event.pairs;
 
-        // change object colours to show those starting a collision
-        for ( var i=0 ; i<pairs.length ; i++ ) {
-
-        	var pair = pairs[i];
-
-            if (
-            	(pair.bodyA === body ||
-            	 pair.bodyB === body) &&
-            	(pair.bodyA === heroBody ||
-            	 pair.bodyB === heroBody)
-            ) {
-            	mesh.material.color.set( 0x000000 )
-            }
-
-        }
+        const pairs = event.pairs;
 
         // check if two pairs have heroBody + a static object
         if ( pairs.length > 1 ) {
@@ -142,8 +127,6 @@ function addRectangleHelper( engineName, x, y, width, height, notStatic ) {
 
         		const baseVec = Matter.Vector.clone( heroBody.position );
 
-        		console.log( pairs[ idx1 ] )
-
         		let vec1 = Matter.Vector.clone( pairs[ idx1 ].collision.penetration );
         		vec1 = Matter.Vector.neg( vec1 );
         		vec1 = Matter.Vector.mult( vec1, STUCK_DEBUG_FACTOR );
@@ -161,26 +144,7 @@ function addRectangleHelper( engineName, x, y, width, height, notStatic ) {
 
         }
 
-    });
-
-    Events.on( engines[ engineName ], 'collisionEnd', function(event) {
-        var pairs = event.pairs;
-
-        // change object colours to show those starting a collision
-        for (var i = 0; i < pairs.length; i++) {
-
-        	var pair = pairs[i];
-
-            if (
-            	pair.bodyA === body ||
-            	pair.bodyB === body 
-            ) {
-            	mesh.material.color.set( 0xffffff )
-            }
-
-        }
-
-    });
+    })
 
 }
 
@@ -189,17 +153,7 @@ function createHeroBody( mesh ) {
 
 	heroBody = Bodies.rectangle( -3, -3, 3, 3 );
 
-	/*
-	Matter.Body.applyForce(
-		heroBody,
-		Matter.Vector.create( -10, -10 ),
-		Matter.Vector.create( 0.00001, 0.00001 )
-	)
-	*/
-
 	heroBody.mesh = mesh;
-
-	// Matter.Composite.add( engines.left.world, heroBody );
 
 }
 
@@ -224,22 +178,9 @@ function animate( deltaTime, dimension ) {
 
 		} else {
 
-			/*
 			Matter.Composite.add(
 				engines[ dimension ].world,
 				heroBody
-			);
-			*/
-
-			Matter.Composite.add(
-				engines[ 'top' ].world,
-				heroBody
-			);
-
-			Matter.Composite.move(
-				engines[ 'top' ].world,
-				heroBody,
-				engines[ dimension ].world
 			);
 
 		}
