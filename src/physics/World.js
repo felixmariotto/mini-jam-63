@@ -13,7 +13,7 @@ const STUCK_DEBUG_FACTOR = 0.2;
 
 const HEIGHT_WATER = 10;
 
-const PLAYER_START = { x: 170, y: 5 };
+const PLAYER_START = { x: 0, y: 0 };
 
 // module aliases
 
@@ -71,7 +71,7 @@ function createWorld( name ) {
 	case 'left' :
 		engine.world.gravity.x = -0.6;
 		engine.world.gravity.y = -0.4;
-		engine.world.gravity.scale = 0.000025;
+		engine.world.gravity.scale = 0.00005;
 		break;
 
 	case 'top' :
@@ -81,12 +81,12 @@ function createWorld( name ) {
 	case 'right' :
 		engine.world.gravity.x = 0.6;
 		engine.world.gravity.y = -0.4;
-		engine.world.gravity.scale = 0.000025;
+		engine.world.gravity.scale = 0.00005;
 		break;
 
 	case 'bottom' :
 		engine.world.gravity.y = -1;
-		engine.world.gravity.scale = 0.000025;
+		engine.world.gravity.scale = 0.00005;
 		break
 
 	}
