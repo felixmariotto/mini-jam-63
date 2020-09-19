@@ -7,12 +7,18 @@ import Matter from 'matter-js';
 let heroBody;
 let lastDimension;
 
+// factor to smooth the 'pull-out' to help unstuck the body
+// see https://github.com/liabru/matter-js/issues/915
+const STUCK_DEBUG_FACTOR = 0.2;
+
 // module aliases
 
 const Engine = Matter.Engine;
 const World = Matter.World;
+const Body = Matter.Body;
 const Bodies = Matter.Bodies;
 const Events = Matter.Events;
+const Vertices = Matter.Vertices;
 
 //
 
@@ -93,22 +99,65 @@ function addRectangleHelper( engineName, x, y, width, height, notStatic ) {
 
 	if ( notStatic ) body.mesh = mesh;
 
-	Events.on( engines[ engineName ], 'collisionStart', function(event) {
+	Events.on( engines[ engineName ], 'collisionActive', function(event) {
         var pairs = event.pairs;
 
         // change object colours to show those starting a collision
-        for (var i = 0; i < pairs.length; i++) {
+        for ( var i=0 ; i<pairs.length ; i++ ) {
 
         	var pair = pairs[i];
 
             if (
-            	pair.bodyA === body ||
-            	pair.bodyB === body 
+            	(pair.bodyA === body ||
+            	 pair.bodyB === body) &&
+            	(pair.bodyA === heroBody ||
+            	 pair.bodyB === heroBody)
             ) {
             	mesh.material.color.set( 0x000000 )
-
-            console.log( pair )
             }
+
+        }
+
+        // check if two pairs have heroBody + a static object
+        if ( pairs.length > 1 ) {
+
+        	let idx1 = pairs.findIndex( (pair) => {
+        		return (
+        			pair.bodyA === heroBody && pair.bodyB.isStatic ||
+            	 	pair.bodyB === heroBody && pair.bodyA.isStatic
+            	)
+        	})
+
+        	let idx2 = pairs.findIndex( (pair, i) => {
+
+        		if ( i === idx1 ) return false
+
+        		return (
+        			pair.bodyA === heroBody && pair.bodyB.isStatic ||
+            	 	pair.bodyB === heroBody && pair.bodyA.isStatic
+            	)
+        	})
+
+        	if ( idx1 > -1 && idx2 > -1 ) {
+
+        		const baseVec = Matter.Vector.clone( heroBody.position );
+
+        		console.log( pairs[ idx1 ] )
+
+        		let vec1 = Matter.Vector.clone( pairs[ idx1 ].collision.penetration );
+        		vec1 = Matter.Vector.neg( vec1 );
+        		vec1 = Matter.Vector.mult( vec1, STUCK_DEBUG_FACTOR );
+
+        		let vec2 = Matter.Vector.clone( pairs[ idx2 ].collision.penetration );
+        		vec2 = Matter.Vector.neg( vec2 );
+        		vec2 = Matter.Vector.mult( vec2, STUCK_DEBUG_FACTOR );
+
+        		Matter.Vector.add( baseVec, vec1, baseVec );
+        		Matter.Vector.add( baseVec, vec2, baseVec );
+
+        		Matter.Body.setPosition( heroBody, baseVec );
+
+        	}
 
         }
 
@@ -138,11 +187,19 @@ function addRectangleHelper( engineName, x, y, width, height, notStatic ) {
 // create hero body
 function createHeroBody( mesh ) {
 
-	heroBody = Bodies.rectangle( 0, 0, 3, 3 );
+	heroBody = Bodies.rectangle( -3, -3, 3, 3 );
+
+	/*
+	Matter.Body.applyForce(
+		heroBody,
+		Matter.Vector.create( -10, -10 ),
+		Matter.Vector.create( 0.00001, 0.00001 )
+	)
+	*/
 
 	heroBody.mesh = mesh;
 
-	// World.add( engines.left, heroBody );
+	// Matter.Composite.add( engines.left.world, heroBody );
 
 }
 
@@ -167,9 +224,22 @@ function animate( deltaTime, dimension ) {
 
 		} else {
 
+			/*
 			Matter.Composite.add(
 				engines[ dimension ].world,
 				heroBody
+			);
+			*/
+
+			Matter.Composite.add(
+				engines[ 'top' ].world,
+				heroBody
+			);
+
+			Matter.Composite.move(
+				engines[ 'top' ].world,
+				heroBody,
+				engines[ dimension ].world
 			);
 
 		}
