@@ -133,6 +133,9 @@ fileLoader.load( url, (file) => {
 	// wall between first and second rooms
 	createBox( direction, Vec( 750, -37 ), Vec( 3, 20, 200 ), true );
 
+	// dangerous material
+	createBox( direction, Vec( 774, -65 ), Vec( 20, 5, 200 ), true );
+
 	// floor after first jump in second room
 	createBox( direction, Vec( 800, -65 ), Vec( 40, 10, 200 ), true );
 
