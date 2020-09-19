@@ -171,9 +171,57 @@ fileLoader.load( url, (file) => {
 
 	// big pit
 	// right wall
-	createBox( direction, Vec( 940, -143.5 ), Vec( 30, 345, 200 ), true );
+	createBox( direction, Vec( 955, -143.5 ), Vec( 60, 345, 200 ), true );
 	// floor
-	createBox( direction, Vec( 917, -338 ), Vec( 30, 10, 200 ), true );
+	createBox( direction, Vec( 917, -820 ), Vec( 30, 10, 200 ), true );
+	// first obstacle
+	createBox( direction, Vec( 900, -24 ), Vec( 20, 20, 200 ), true );
+	// second obstacle
+	createBox( direction, Vec( 922, -73 ), Vec( 25, 40, 200 ), true );
+	// third obstacle ( double )
+	createBox( direction, Vec( 932, -160 ), Vec( 25, 70, 200 ), true );
+	createBox( direction, Vec( 900, -185 ), Vec( 20, 80, 200 ), true );
+	// fourth obstacle ( trap & narrow passage )
+	createBox( direction, Vec( 915, -270 ), Vec( 10, 40, 200 ), true );
+	createBox( direction, Vec( 900, -275 ), Vec( 20, 30, 200 ), true );
+
+	// pyramid pit
+
+	// FIRT LEVEL
+	// left wall
+	createBox( direction, Vec( 840, -370 ), Vec( 40, 150, 200 ), true );
+	// right wall
+	createBox( direction, Vec( 980, -370 ), Vec( 30, 150, 200 ), true );
+
+	// SECOND LEVEL
+	// left wall
+	createBox( direction, Vec( 855, -450 ), Vec( 40, 70, 200 ), true );
+	// right wall
+	createBox( direction, Vec( 965, -450 ), Vec( 30, 70, 200 ), true );
+
+	// THIRD LEVEL
+	// left wall
+	createBox( direction, Vec( 870, -520 ), Vec( 40, 70, 200 ), true );
+	// right wall
+	createBox( direction, Vec( 950, -520 ), Vec( 30, 70, 200 ), true );
+
+	// FOURTH LEVEL
+	// left wall
+	createBox( direction, Vec( 880, -590 ), Vec( 40, 70, 200 ), true );
+	// right wall
+	createBox( direction, Vec( 940, -590 ), Vec( 30, 70, 200 ), true );
+
+	// FIFTH LEVEL
+	// left wall
+	createBox( direction, Vec( 885, -660 ), Vec( 40, 70, 200 ), true );
+	// right wall
+	createBox( direction, Vec( 935, -660 ), Vec( 30, 70, 200 ), true );
+
+	// SIXTH LEVEL
+	// left wall
+	createBox( direction, Vec( 888, -755 ), Vec( 40, 120, 200 ), true );
+	// right wall
+	createBox( direction, Vec( 932, -755 ), Vec( 30, 120, 200 ), true );
 
 })
 
