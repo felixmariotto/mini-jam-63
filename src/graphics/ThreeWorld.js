@@ -11,6 +11,9 @@ const BOX_COLORS = {
 	bottom: '#2a3747'
 }
 
+const HEIGHT_WATER = 10;
+const CAMERA_BASE_POSITION = new THREE.Vector3( -2, 5, 70 );
+
 let heroMesh;
 let lastDimension;
 
@@ -25,13 +28,13 @@ const domBottomCanvas = document.querySelector('.scene-mask.bottom canvas');
 
 const scenes = {
 	left: createScene( 'left', domLeftCanvas, "#ffc438" ),
-	top: createScene( 'top', domTopCanvas, "#28237b" ),
+	top: createScene( 'top', domTopCanvas, "#96a5ab" ),
 	right: createScene( 'right', domRightCanvas, "#30c5ad" ),
 	bottom: createScene( 'bottom', domBottomCanvas, "#17191b" )
 };
 
-const camera = new THREE.PerspectiveCamera( 30, 1, 0.1, 100 );
-camera.position.z = 70;
+const camera = new THREE.PerspectiveCamera( 30, 1, 0.1, 200 );
+camera.position.copy( CAMERA_BASE_POSITION );
 camera.lookAt( 0, 0, 0 );
 
 function createScene( name, canvas, backgroundColor ) {
@@ -58,6 +61,17 @@ function createScene( name, canvas, backgroundColor ) {
 	return scene
 
 }
+
+// create water in top scene
+
+const waterMesh = new THREE.Mesh(
+	new THREE.BoxBufferGeometry( 10000, 1000, 200 ),
+	new THREE.MeshBasicMaterial({ color: 0x28237b, side: THREE.DoubleSide })
+)
+
+waterMesh.position.y = -500 + HEIGHT_WATER;
+
+scenes.top.add( waterMesh );
 
 //
 
@@ -100,8 +114,10 @@ function updateBody( engine, body ) {
 
 	if ( body.isHero && MOVE_CAMERA ) {
 
-		camera.position.x = body.position.x;
-		camera.position.y = body.position.y;
+		camera.position.copy( CAMERA_BASE_POSITION );
+
+		camera.position.x += body.position.x;
+		camera.position.y += body.position.y;
 
 	}
 

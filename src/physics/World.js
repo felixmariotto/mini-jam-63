@@ -11,6 +11,8 @@ let lastDimension;
 // see https://github.com/liabru/matter-js/issues/915
 const STUCK_DEBUG_FACTOR = 1;
 
+const HEIGHT_WATER = 10;
+
 // module aliases
 
 const Engine = Matter.Engine;
@@ -28,6 +30,31 @@ const engines = {
 	right: createWorld( 'right' ),
 	bottom: createWorld( 'bottom' )
 };
+
+Events.on( engines.top, 'beforeUpdate', function() {
+
+    const gravityWater = engines.top.world.gravity;
+    const gravityEarth = engines.bottom.world.gravity;
+
+    Matter.Composite.allBodies( engines.top.world ).forEach( (body) => {
+
+    	if ( !body.isStatic && body.position.y > HEIGHT_WATER ) {
+
+    		Body.applyForce( body, body.position, {
+				x: -gravityWater.x * gravityWater.scale * body.mass,
+				y: -gravityWater.y * gravityWater.scale * body.mass
+			});
+
+			Body.applyForce( body, body.position, {
+				x: gravityEarth.x * gravityEarth.scale * body.mass,
+				y: gravityEarth.y * gravityEarth.scale * body.mass
+			});
+
+    	}
+
+    })
+
+});
 
 //
 
