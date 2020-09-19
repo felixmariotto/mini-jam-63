@@ -13,7 +13,7 @@ const STUCK_DEBUG_FACTOR = 0.2;
 
 const HEIGHT_WATER = 10;
 
-const PLAYER_START = { x: 440, y: 20 };
+const PLAYER_START = { x: 576.8034453828069, y: 10.06758204140158 };
 
 // module aliases
 
@@ -243,6 +243,12 @@ function animate( deltaTime, dimension ) {
 	};
 
 };
+
+global.getPos = () => {
+
+	console.log( heroBody.position )
+
+}
 
 //
 

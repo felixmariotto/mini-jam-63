@@ -41,7 +41,7 @@ fileLoader.load( url, (file) => {
 	createBox( direction, Vec( -50, 0 ), Vec( 50, 50, 200 ), true, 0.5 );
 
 	// ground
-	createBox( direction, Vec( 200, -15 ), Vec( 500, 20, 200 ), true );
+	createBox( direction, Vec( 200, -40 ), Vec( 500, 70, 200 ), true );
 
 	// hill before riverbed
 	createBox( direction, Vec( 35, -14 ), Vec( 50, 20, 200 ), true, 0.1 );
@@ -66,15 +66,41 @@ fileLoader.load( url, (file) => {
 	createBox( direction, Vec( 350, -8 ), Vec( 100, 10, 200 ), true, 0.1 );
 	createBox( direction, Vec( 418.2, -6.8 ), Vec( 40, 10, 200 ), true, -0.18 );
 
-	///////////////////////////////
-	// SECOND SECTION : FIRST LAB
-	///////////////////////////////
+	/////////////////////////////
+	// SECOND SECTION : THE PIT
+	/////////////////////////////
 
 	// ground after pit
 	createBox( direction, Vec( 490, -12 ), Vec( 60, 20, 200 ), true, 0.1 );
 
-	// wall building
+	// wall building ( player must go back )
 	createBox( direction, Vec( 510, 20 ), Vec( 5, 60, 200 ), true );
+	createBox( direction, Vec( 508, 0 ), Vec( 5, 5, 200 ), true, 0.9 );
+
+	// pit right wall
+	createBox( direction, Vec( 500, -40 ), Vec( 85, 70, 200 ), true );
+
+	// floor after fall
+	createBox( direction, Vec( 510, -100 ), Vec( 140, 5, 200 ), true );
+
+	// walls of room after fall
+	createBox( direction, Vec( 440, -90 ), Vec( 5, 40, 200 ), true );
+	createBox( direction, Vec( 495, -91 ), Vec( 35, 20, 200 ), true );
+
+	// wall second room
+	createBox( direction, Vec( 598, -80 ), Vec( 44, 40, 200 ), true );
+
+	// second pit right wall
+	// top
+	createBox( direction, Vec( 560.5, -16 ), Vec( 20, 30, 200 ), true );
+	// bottom
+	createBox( direction, Vec( 560.5, -58 ), Vec( 20, 35, 200 ), true );
+
+	// roof second pit
+	createBox( direction, Vec( 548, -3 ), Vec( 15, 5, 200 ), true );
+
+	// cap
+	createBox( direction, Vec( 572, -67 ), Vec( 30, 19, 200 ), true, -0.45 );
 
 })
 

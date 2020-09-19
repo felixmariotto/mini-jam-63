@@ -12,7 +12,7 @@ const BOX_COLORS = {
 }
 
 const HEIGHT_WATER = 10;
-const CAMERA_BASE_POSITION = new THREE.Vector3( -2, 5, 70 );
+const CAMERA_BASE_POSITION = new THREE.Vector3( 0, 0, 70 );
 
 let heroMesh;
 let lastDimension;
