@@ -57,16 +57,24 @@ fileLoader.load( url, (file) => {
 	// slope after cliff in water
 	createBox( direction, Vec( 170, -5 ), Vec( 30, 10, 200 ), true, -0.5 );
 
+	// rock stop after cliff
+	createBox( direction, Vec( 217, -8 ), Vec( 20, 20, 200 ), true, -0.85 );
+	createBox( direction, Vec( 223, 3.5 ), Vec( 10, 5, 200 ), true );
+	createBox( direction, Vec( 257, -2.5 ), Vec( 60, 5, 200 ), true, -0.2 );
+
+	// gentle hill
+	createBox( direction, Vec( 350, -8 ), Vec( 100, 10, 200 ), true, 0.1 );
+	createBox( direction, Vec( 418.2, -6.8 ), Vec( 40, 10, 200 ), true, -0.18 );
+
 	///////////////////////////////
 	// SECOND SECTION : FIRST LAB
 	///////////////////////////////
 
-	// first building
-	createBox( direction, Vec( 515.5, -5 ), Vec( 1, 6, 10), true );
-	createBox( direction, Vec( 530, -1 ), Vec( 30, 2, 15 ), true, 0.1 );
+	// ground after pit
+	createBox( direction, Vec( 490, -12 ), Vec( 60, 20, 200 ), true, 0.1 );
 
-	// wall entry first building
-	createBox( direction, Vec( 545, 10 ), Vec( 2, 3, 10), true );
+	// wall building
+	createBox( direction, Vec( 510, 20 ), Vec( 5, 60, 200 ), true );
 
 })
 
