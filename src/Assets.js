@@ -6,7 +6,13 @@ import ThreeWorld from './graphics/ThreeWorld.js';
 
 //
 
+const USE_HELPERS = true;
+
 const fileLoader = new THREE.FileLoader();
+
+function Vec( x, y, z ) {
+	return { x, y, z }
+}
 
 //
 
@@ -19,16 +25,15 @@ fileLoader.load( url, (file) => {
 })
 */
 
-// add walls
+/////////////////////////////////
+// COMMON VOLUMES IN ALL WORLDS
+/////////////////////////////////
 
 [ 'left', 'top', 'right', 'bottom' ].forEach( (direction, i) => {
 
-	World.addRectangleHelper( direction, -8, 0, 1, 16 );
-	World.addRectangleHelper( direction, 0, -8, 16, 1 );
-	World.addRectangleHelper( direction, 8, 0, 1, 16 );
-	World.addRectangleHelper( direction, 0, 8, 16, 1 );
+	// STATIC
 
-	World.addRectangleHelper( direction, 1, 1, 3, 3, true );
+	createBox( direction, Vec( -8, 0 ), Vec( 1, 16, 5 ), true );
 
 })
 
@@ -42,6 +47,20 @@ const heroMesh = new THREE.Mesh(
 World.createHeroBody( heroMesh );
 
 ThreeWorld.registerHeroMesh( heroMesh );
+
+// volume creator functions
+
+function createBox( world, position, dimension, isStatic, rotationZ ) {
+
+	let mesh;
+
+	rotationZ = rotationZ || 0;
+
+	if ( USE_HELPERS ) mesh = ThreeWorld.addBoxTo( world, position, dimension, rotationZ );
+
+	World.createBox( world, position, dimension, isStatic, rotationZ, mesh );
+
+};
 
 //
 

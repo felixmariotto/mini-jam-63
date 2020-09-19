@@ -3,6 +3,8 @@ import * as THREE from 'three';
 
 //
 
+const MOVE_CAMERA = true;
+
 let heroMesh;
 let lastDimension;
 
@@ -90,7 +92,7 @@ function updateBody( engine, body ) {
 
 	// update camera position according to hero position
 
-	if ( body.isHero ) {
+	if ( body.isHero && MOVE_CAMERA ) {
 
 		camera.position.x = body.position.x;
 		camera.position.y = body.position.y;
@@ -108,15 +110,17 @@ function add( sceneName, mesh ) {
 }
 
 // helper function that create and add a box quickly
-function addBoxTo( sceneName, x, y, width, height ) {
+function addBoxTo( sceneName, position, dimension, rotationZ ) {
 
 	const mesh = new THREE.Mesh(
-		new THREE.BoxBufferGeometry( width, height, 3 ),
+		new THREE.BoxBufferGeometry( dimension.x, dimension.y, dimension.z ),
 		new THREE.MeshBasicMaterial()
 	);
 
-	mesh.position.x = x;
-	mesh.position.y = y;
+	mesh.position.x = position.x;
+	mesh.position.y = position.y;
+
+	mesh.rotation.z = rotationZ;
 
 	scenes[ sceneName ].add( mesh );
 

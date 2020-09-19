@@ -88,16 +88,22 @@ function addBodyTo( engineName, mesh, shape, dimensions, options ) {
 
 }
 
-// helper function to create both a mesh and a body quickly
-function addRectangleHelper( engineName, x, y, width, height, notStatic ) {
+// called by Assets.createBox
+function createBox( engineName, position, dimension, isStatic, rotationZ, mesh ) {
 
-	const body = Bodies.rectangle( x, y, width, height, { isStatic: !notStatic } );
+	const body = Bodies.rectangle(
+		position.x,
+		position.y,
+		dimension.x,
+		dimension.y,
+		{ isStatic: isStatic }
+	);
+
+	body.mesh = mesh;
+
+	Matter.Body.rotate( body, rotationZ );
 
 	World.add( engines[ engineName ].world, body );
-
-	const mesh = ThreeWorld.addBoxTo( engineName, x, y, width, height );
-
-	if ( notStatic ) body.mesh = mesh;
 
 	Events.on( engines[ engineName ], 'collisionActive', function(event) {
 
@@ -201,8 +207,6 @@ function animate( deltaTime, dimension ) {
 
 		Matter.Composite.allBodies( engine.world ).forEach( (body) => {
 
-			// if ( !body.isStatic ) console.log( body )
-
 			ThreeWorld.updateBody( engine, body );
 
 		});
@@ -217,5 +221,5 @@ export default {
 	animate,
 	addBodyTo,
 	createHeroBody,
-	addRectangleHelper
+	createBox
 }
