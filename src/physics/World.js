@@ -12,6 +12,7 @@ let lastDimension;
 const Engine = Matter.Engine;
 const World = Matter.World;
 const Bodies = Matter.Bodies;
+const Events = Matter.Events;
 
 //
 
@@ -33,9 +34,9 @@ function createWorld( name ) {
 	switch ( name ) {
 
 	case 'left' :
-		engine.world.gravity.x = 1;
+		engine.world.gravity.x = -1;
 		engine.world.gravity.y = 0;
-		engine.world.gravity.scale = -0.00001;
+		engine.world.gravity.scale = 0.00001;
 		break;
 
 	case 'top' :
@@ -49,7 +50,8 @@ function createWorld( name ) {
 		break;
 
 	case 'bottom' :
-		engine.world.gravity.scale = -0.00001;
+		engine.world.gravity.y = -1;
+		engine.world.gravity.scale = 0.00001;
 		break
 
 	}
@@ -81,13 +83,53 @@ function addBodyTo( engineName, mesh, shape, dimensions, options ) {
 }
 
 // helper function to create both a mesh and a body quickly
-function addRectangleHelper( engineName, x, y, width, height ) {
+function addRectangleHelper( engineName, x, y, width, height, notStatic ) {
 
-	const body = Bodies.rectangle( x, y, width, height, { isStatic: true } );
+	const body = Bodies.rectangle( x, y, width, height, { isStatic: !notStatic } );
 
 	World.add( engines[ engineName ].world, body );
 
-	ThreeWorld.addBoxTo( engineName, x, y, width, height );
+	const mesh = ThreeWorld.addBoxTo( engineName, x, y, width, height );
+
+	Events.on( engines[ engineName ], 'collisionStart', function(event) {
+        var pairs = event.pairs;
+
+        // change object colours to show those starting a collision
+        for (var i = 0; i < pairs.length; i++) {
+
+        	var pair = pairs[i];
+
+            if (
+            	pair.bodyA === body ||
+            	pair.bodyB === body 
+            ) {
+            	mesh.material.color.set( 0x000000 )
+
+            console.log( pair )
+            }
+
+        }
+
+    });
+
+    Events.on( engines[ engineName ], 'collisionEnd', function(event) {
+        var pairs = event.pairs;
+
+        // change object colours to show those starting a collision
+        for (var i = 0; i < pairs.length; i++) {
+
+        	var pair = pairs[i];
+
+            if (
+            	pair.bodyA === body ||
+            	pair.bodyB === body 
+            ) {
+            	mesh.material.color.set( 0xffffff )
+            }
+
+        }
+
+    });
 
 }
 
@@ -143,6 +185,8 @@ function animate( deltaTime, dimension ) {
 		Engine.update( engine, deltaTime );
 
 		Matter.Composite.allBodies( engine.world ).forEach( (body) => {
+
+			// if ( !body.isStatic ) console.log( body )
 
 			ThreeWorld.updateBody( engine, body );
 

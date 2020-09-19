@@ -86,6 +86,8 @@ function updateBody( engine, body ) {
 	body.mesh.position.x = body.position.x;
 	body.mesh.position.y = body.position.y;
 
+	body.mesh.rotation.z = body.angle;
+
 }
 
 //
@@ -101,13 +103,15 @@ function addBoxTo( sceneName, x, y, width, height ) {
 
 	const mesh = new THREE.Mesh(
 		new THREE.BoxBufferGeometry( width, height, 3 ),
-		new THREE.MeshNormalMaterial()
+		new THREE.MeshBasicMaterial()
 	);
 
 	mesh.position.x = x;
 	mesh.position.y = y;
 
 	scenes[ sceneName ].add( mesh );
+
+	return mesh
 
 }
 
