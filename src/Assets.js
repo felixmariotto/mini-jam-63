@@ -102,6 +102,79 @@ fileLoader.load( url, (file) => {
 	// cap
 	createBox( direction, Vec( 572, -67 ), Vec( 30, 19, 200 ), true, -0.45 );
 
+	// steep slope on the left after last pit
+	createBox( direction, Vec( 560.7, 13 ), Vec( 10, 35, 200 ), true, 0.3 );
+
+	// left wall big pit
+	createBox( direction, Vec( 620, -67 ), Vec( 30, 19, 200 ), true, 0.45 );
+	createBox( direction, Vec( 638, -32 ), Vec( 20, 85, 200 ), true );
+
+	/////////////////////////////
+	// THIRD SECTION : THE LAB
+	/////////////////////////////
+
+	// floor
+	createBox( direction, Vec( 700, -79 ), Vec( 120, 10, 200 ), true );
+
+	// building
+	createBox( direction, Vec( 680, -35 ), Vec( 35, 85, 200 ), true );
+
+	// entry building
+	createBox( direction, Vec( 761, -15 ), Vec( 77, 45, 200 ), true );
+	createBox( direction, Vec( 724, -69 ), Vec( 3, 45, 200 ), true );
+	// obstacle roof
+	createBox( direction, Vec( 745, 0 ), Vec( 20, 45, 200 ), true );
+	// little building bellow entry
+	createBox( direction, Vec( 719, -75 ), Vec( 7, 45, 200 ), true );
+
+	// floor first room
+	createBox( direction, Vec( 745, -65 ), Vec( 40, 10, 200 ), true );
+
+	// wall between first and second rooms
+	createBox( direction, Vec( 750, -37 ), Vec( 3, 20, 200 ), true );
+
+	// floor after first jump in second room
+	createBox( direction, Vec( 800, -65 ), Vec( 40, 10, 200 ), true );
+
+	// wall between second and third rooms
+	createBox( direction, Vec( 800, -7 ), Vec( 3, 80, 200 ), true );
+
+	// third room
+	// wall end
+	createBox( direction, Vec( 830, -43 ), Vec( 3, 30, 200 ), true );
+	// box end
+	createBox( direction, Vec( 827, -52 ), Vec( 20, 20, 200 ), true );
+	// roof
+	createBox( direction, Vec( 835, -30 ), Vec( 50, 10, 200 ), true );
+
+	// roof channel
+	createBox( direction, Vec( 805, 6.5 ), Vec( 20, 5, 200 ), true );
+
+	// fourth room ( float up while dodging )
+	// left wall
+	createBox( direction, Vec( 820, -3.5 ), Vec( 20, 25, 200 ), true );
+	// right wall
+	createBox( direction, Vec( 880, -153.5 ), Vec( 40, 325, 200 ), true );
+	// left wall up
+	createBox( direction, Vec( 834, 1.5 ), Vec( 15, 15, 200 ), true );
+	// right wall up
+	createBox( direction, Vec( 856, 1.5 ), Vec( 15, 15, 200 ), true );
+
+	// roof before big jump
+	createBox( direction, Vec( 895, 0 ), Vec( 10, 25, 200 ), true );
+	// ramp
+	createBox( direction, Vec( 887, 8 ), Vec( 10, 5, 200 ), true, 0.5 );
+
+	//////////////////////////////
+	// FOURTH SECTION : THE CORE
+	//////////////////////////////
+
+	// big pit
+	// right wall
+	createBox( direction, Vec( 940, -143.5 ), Vec( 30, 345, 200 ), true );
+	// floor
+	createBox( direction, Vec( 917, -338 ), Vec( 30, 10, 200 ), true );
+
 })
 
 // create hero box :

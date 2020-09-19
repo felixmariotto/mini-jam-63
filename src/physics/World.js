@@ -13,7 +13,8 @@ const STUCK_DEBUG_FACTOR = 0.2;
 
 const HEIGHT_WATER = 10;
 
-const PLAYER_START = { x: 576.8034453828069, y: 10.06758204140158 };
+// const PLAYER_START = { x: 0, y: 0 };
+const PLAYER_START = { x: 896.2223651822246, y: 13.96013874081367 };
 
 // module aliases
 
