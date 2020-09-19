@@ -60,10 +60,17 @@ function createScene( name, canvas, backgroundColor ) {
 
 	// TEMPORARY
 
-	const ambLight = new THREE.AmbientLight( 0xffffff, 0.5 );
-	const directionalLight = new THREE.DirectionalLight( 0xffffff, 0.5 );
+	const ambLight = new THREE.AmbientLight( 0xffffff, 0.2 );
+
+	const directionalLight = new THREE.DirectionalLight( 0xded4ff, 0.6 );
 	directionalLight.position.z = 5;
-	scene.add( ambLight, directionalLight );
+
+	const directionalLight2 = new THREE.DirectionalLight( 0xfff8cf, 0.4 );
+	directionalLight2.position.z = 3;
+	directionalLight2.position.x = 2;
+	directionalLight2.position.y = -1;
+
+	scene.add( ambLight, directionalLight, directionalLight2 );
 
 	return scene
 
