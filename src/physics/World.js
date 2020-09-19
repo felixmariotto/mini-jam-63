@@ -9,7 +9,7 @@ let lastDimension;
 
 // factor to smooth the 'pull-out' to help unstuck the body
 // see https://github.com/liabru/matter-js/issues/915
-const STUCK_DEBUG_FACTOR = 0.2;
+const STUCK_DEBUG_FACTOR = 1;
 
 // module aliases
 
@@ -40,24 +40,24 @@ function createWorld( name ) {
 	switch ( name ) {
 
 	case 'left' :
-		engine.world.gravity.x = -1;
-		engine.world.gravity.y = 0;
-		engine.world.gravity.scale = 0.00001;
+		engine.world.gravity.x = -0.5;
+		engine.world.gravity.y = -0.5;
+		engine.world.gravity.scale = 0.000015;
 		break;
 
 	case 'top' :
-		engine.world.gravity.scale = 0.00001;
+		engine.world.gravity.scale = 0.000005;
 		break;
 
 	case 'right' :
-		engine.world.gravity.x = 1;
-		engine.world.gravity.y = 0;
-		engine.world.gravity.scale = 0.00001;
+		engine.world.gravity.x = 0.5;
+		engine.world.gravity.y = -0.5;
+		engine.world.gravity.scale = 0.000015;
 		break;
 
 	case 'bottom' :
 		engine.world.gravity.y = -1;
-		engine.world.gravity.scale = 0.00001;
+		engine.world.gravity.scale = 0.000015;
 		break
 
 	}

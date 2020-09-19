@@ -33,7 +33,11 @@ fileLoader.load( url, (file) => {
 
 	// STATIC
 
-	createBox( direction, Vec( -8, 0 ), Vec( 1, 16, 5 ), true );
+	// big ground
+	createBox( direction, Vec( 0, -15 ), Vec( 50, 20, 10 ), true );
+
+	// big wall start
+	createBox( direction, Vec( -50, 0 ), Vec( 50, 50, 10 ), true, 0.5 );
 
 })
 

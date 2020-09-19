@@ -4,6 +4,12 @@ import * as THREE from 'three';
 //
 
 const MOVE_CAMERA = true;
+const BOX_COLORS = {
+	top: "#2f7e83",
+	left: "#f06c00",
+	right: '#238531',
+	bottom: '#2a3747'
+}
 
 let heroMesh;
 let lastDimension;
@@ -114,7 +120,7 @@ function addBoxTo( sceneName, position, dimension, rotationZ ) {
 
 	const mesh = new THREE.Mesh(
 		new THREE.BoxBufferGeometry( dimension.x, dimension.y, dimension.z ),
-		new THREE.MeshBasicMaterial()
+		new THREE.MeshBasicMaterial({ color: BOX_COLORS[ sceneName ] })
 	);
 
 	mesh.position.x = position.x;
