@@ -88,6 +88,15 @@ function updateBody( engine, body ) {
 
 	body.mesh.rotation.z = body.angle;
 
+	// update camera position according to hero position
+
+	if ( body.isHero ) {
+
+		camera.position.x = body.position.x;
+		camera.position.y = body.position.y;
+
+	}
+
 }
 
 //

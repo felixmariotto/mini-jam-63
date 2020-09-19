@@ -153,6 +153,8 @@ function createHeroBody( mesh ) {
 
 	heroBody = Bodies.rectangle( -3, -3, 3, 3 );
 
+	heroBody.isHero = true;
+
 	heroBody.mesh = mesh;
 
 }
