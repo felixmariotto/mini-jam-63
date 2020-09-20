@@ -54,12 +54,20 @@ setInterval( () => {
 const dangerousTexture = textureLoader.load( 'https://mini-jam-63.s3.eu-west-3.amazonaws.com/textures/dangerous.png' )
 
 dangerousTexture.magFilter = THREE.NearestFilter;
+dangerousTexture.minFilter = THREE.NearestFilter;
 dangerousTexture.wrapS = THREE.RepeatWrapping;
 dangerousTexture.wrapT = THREE.RepeatWrapping;
 
 const DANGEROUS_MATERIAL = new THREE.MeshBasicMaterial({
 	map: dangerousTexture
 })
+
+setInterval( () => {
+
+	dangerousTexture.offset.x = ( 1 / 8 ) * Math.random() * 8;
+	dangerousTexture.offset.y = ( 1 / 8 ) * Math.random() * 8;
+
+}, 300 );
 
 // create download button to download the scene created in three.js
 
