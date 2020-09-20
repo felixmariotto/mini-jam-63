@@ -21,6 +21,46 @@ const TEXTURES = {
 	bottom: textureLoader.load( 'https://mini-jam-63.s3.eu-west-3.amazonaws.com/textures/night_palette.png' )
 }
 
+// BLICKING MATERIAL 
+/*
+const DANGEROUS_COLORS = [
+	0xffc438,
+	0xf06c00,
+	0x9f1e31,
+	0x57142e,
+	0xc95cd1,
+	0x6c349d,
+	0x28237b,
+	0x0a4b4d,
+	0x238531,
+	0x72cb25
+]
+
+let dangerousIdx = 0;
+
+const DANGEROUS_MATERIAL = new THREE.MeshBasicMaterial({
+	color: DANGEROUS_COLORS[ dangerousIdx ]
+})
+
+setInterval( () => {
+
+	dangerousIdx = ( dangerousIdx + 1 ) % DANGEROUS_COLORS.length;
+
+	DANGEROUS_MATERIAL.color.set( DANGEROUS_COLORS[ dangerousIdx ] )
+
+}, 100 );
+*/
+
+const dangerousTexture = textureLoader.load( 'https://mini-jam-63.s3.eu-west-3.amazonaws.com/textures/dangerous.png' )
+
+dangerousTexture.magFilter = THREE.NearestFilter;
+dangerousTexture.wrapS = THREE.RepeatWrapping;
+dangerousTexture.wrapT = THREE.RepeatWrapping;
+
+const DANGEROUS_MATERIAL = new THREE.MeshBasicMaterial({
+	map: dangerousTexture
+})
+
 // create download button to download the scene created in three.js
 
 function createDLButton() {
@@ -115,7 +155,7 @@ const scenes = {
 	left: createScene( 'left', domLeftCanvas, "#ffc438" ),
 	top: createScene( 'top', domTopCanvas, "#96a5ab" ),
 	right: createScene( 'right', domRightCanvas, "#30c5ad" ),
-	bottom: createScene( 'bottom', domBottomCanvas, "#17191b" )
+	bottom: createScene( 'bottom', domBottomCanvas, "#2a3747" )
 };
 
 const camera = new THREE.PerspectiveCamera( 40, 1, 0.1, 500 );
@@ -143,7 +183,7 @@ function createScene( name, canvas, backgroundColor ) {
 
 	});
 
-	// Add assets
+	// Add global scene mesh
 
 	Assets.globalScene.then( (model) => {
 
@@ -180,6 +220,22 @@ function createScene( name, canvas, backgroundColor ) {
 		scene.add( model.clone() );
 
 	})
+
+	// add dangerous thing
+
+	Assets.dangerous.then( (model) => {
+
+		const clone = model.clone();
+
+		scene.add( clone );
+
+		clone.traverse( (child) => {
+
+			if ( child.material ) child.material = DANGEROUS_MATERIAL
+
+		})
+
+	});
 
 	// TEMPORARY
 

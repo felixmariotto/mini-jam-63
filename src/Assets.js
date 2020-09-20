@@ -3,6 +3,8 @@ import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js'
 
+//
+
 const loader = new GLTFLoader();
 
 const dracoLoader = new DRACOLoader();
@@ -23,12 +25,18 @@ function loadItem( url ) {
 
 };
 
+//
+
 const globalScene = loadItem( 'https://mini-jam-63.s3.eu-west-3.amazonaws.com/models/global-scene-processed.glb' );
+
+const dangerous = loadItem( 'https://mini-jam-63.s3.eu-west-3.amazonaws.com/models/dangerous-processed.glb' );
 
 //
 
+export { dangerous }
 export { globalScene }
 
 export default {
-	globalScene
+	globalScene,
+	dangerous
 }
