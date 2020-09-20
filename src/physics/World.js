@@ -1,4 +1,5 @@
 
+import GameManager from '../GameManager.js';
 import ThreeWorld from '../graphics/ThreeWorld.js';
 import Matter from 'matter-js';
 
@@ -9,12 +10,12 @@ let lastDimension;
 
 // factor to smooth the 'pull-out' to help unstuck the body
 // see https://github.com/liabru/matter-js/issues/915
-const STUCK_DEBUG_FACTOR = 0.2;
+const STUCK_DEBUG_FACTOR = 1;
 
 const HEIGHT_WATER = 10;
 
-const PLAYER_START = { x: 0, y: 0 };
-// const PLAYER_START = { x: 782.9992279615677, y: -58.526655741038745 };
+// const PLAYER_START = { x: 0, y: 0 };
+const PLAYER_START = { x: 782.9992279615677, y: -58.526655741038745 };
 
 // module aliases
 
@@ -105,37 +106,8 @@ function createWorld( name ) {
 
 	}
 
-	return engine
-
-}
-
-// create a body and assign the passed mesh to this body
-function addBodyTo( engineName, mesh, shape, dimensions, options ) {
-
-	const body = engines[ engineName ].myAddBody( shape, dimensions, options );
-
-	body.mesh = mesh;
-
-}
-
-// called by Assets.createBox
-function createBox( engineName, position, dimension, isStatic, rotationZ, mesh ) {
-
-	const body = Bodies.rectangle(
-		position.x,
-		position.y,
-		dimension.x,
-		dimension.y,
-		{ isStatic: isStatic }
-	);
-
-	body.mesh = mesh;
-
-	Matter.Body.rotate( body, rotationZ );
-
-	World.add( engines[ engineName ].world, body );
-
-	Events.on( engines[ engineName ], 'collisionActive', function(event) {
+	// collision events
+	Events.on( engine, 'collisionActive', function(event) {
 
         const pairs = event.pairs;
 
@@ -181,6 +153,38 @@ function createBox( engineName, position, dimension, isStatic, rotationZ, mesh )
         }
 
     })
+
+    //
+
+	return engine
+
+}
+
+// create a body and assign the passed mesh to this body
+function addBodyTo( engineName, mesh, shape, dimensions, options ) {
+
+	const body = engines[ engineName ].myAddBody( shape, dimensions, options );
+
+	body.mesh = mesh;
+
+}
+
+// called by Assets.createBox
+function createBox( engineName, position, dimension, isStatic, rotationZ, mesh, isHarmful ) {
+
+	const body = Bodies.rectangle(
+		position.x,
+		position.y,
+		dimension.x,
+		dimension.y,
+		{ isStatic: isStatic }
+	);
+
+	body.mesh = mesh;
+
+	Matter.Body.rotate( body, rotationZ );
+
+	World.add( engines[ engineName ].world, body );
 
 }
 

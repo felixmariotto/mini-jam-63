@@ -146,12 +146,14 @@ function add( sceneName, mesh ) {
 }
 
 // helper function that create and add a box quickly
-function addBoxTo( sceneName, position, dimension, rotationZ ) {
+function addBoxTo( sceneName, position, dimension, rotationZ, isHarmful ) {
 
 	const mesh = new THREE.Mesh(
 		new THREE.BoxBufferGeometry( dimension.x, dimension.y, dimension.z ),
 		new THREE.MeshLambertMaterial({ color: BOX_COLORS[ sceneName ] })
 	);
+
+	if ( isHarmful ) mesh.material.color.set( 0xff0000 );
 
 	mesh.position.x = position.x;
 	mesh.position.y = position.y;

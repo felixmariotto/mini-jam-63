@@ -134,7 +134,7 @@ fileLoader.load( url, (file) => {
 	createBox( direction, Vec( 750, -37 ), Vec( 3, 20, 200 ), true );
 
 	// dangerous material
-	createBox( direction, Vec( 774, -65 ), Vec( 20, 5, 200 ), true );
+	createBox( direction, Vec( 774, -65 ), Vec( 20, 5, 200 ), true, 0, true );
 
 	// floor after first jump in second room
 	createBox( direction, Vec( 800, -65 ), Vec( 40, 10, 200 ), true );
@@ -241,15 +241,15 @@ ThreeWorld.registerHeroMesh( heroMesh );
 
 // volume creator functions
 
-function createBox( world, position, dimension, isStatic, rotationZ ) {
+function createBox( world, position, dimension, isStatic, rotationZ, isHarmful ) {
 
 	let mesh;
 
 	rotationZ = rotationZ || 0;
 
-	if ( USE_HELPERS ) mesh = ThreeWorld.addBoxTo( world, position, dimension, rotationZ );
+	if ( USE_HELPERS ) mesh = ThreeWorld.addBoxTo( world, position, dimension, rotationZ, isHarmful );
 
-	World.createBox( world, position, dimension, isStatic, rotationZ, mesh );
+	World.createBox( world, position, dimension, isStatic, rotationZ, mesh, isHarmful );
 
 };
 
