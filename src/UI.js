@@ -17,22 +17,6 @@ const mousePos = new THREE.Vector2();
 
 // event listeners
 
-domStartBtn.addEventListener('click', (e) => {
-
-	domStartBtn.innerHTML = 'resume';
-
-	GameManager.startGame();
-
-	hideHomescreen();
-
-	isGameOn = !isGameOn;
-
-	setTimeout( () => {
-		positionMasks( e );
-	}, 0 );
-
-});
-
 window.addEventListener('keydown', (e) => {
 
 	if ( e.code === "Escape" ) {
@@ -69,7 +53,23 @@ function positionMasks( e ) {
 
 function allowStart() {
 
-	console.log('can start')
+	domStartBtn.innerHTML = 'start';
+
+	domStartBtn.addEventListener('click', (e) => {
+
+		domStartBtn.innerHTML = 'resume';
+
+		GameManager.startGame();
+
+		hideHomescreen();
+
+		isGameOn = !isGameOn;
+
+		setTimeout( () => {
+			positionMasks( e );
+		}, 0 );
+
+	});
 
 }
 

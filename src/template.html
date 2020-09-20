@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-	<title>Mini Jam 63 - Felix Mariotto</title>
+	<title>Dimensional Bug - Felix Mariotto</title>
 	<style>
 
 		:root {
@@ -14,10 +14,24 @@
 			--black: #17191b;
 		}
 
+		@font-face {
+		 font-family: "retro_gaming";
+		 src: url("./retro_gaming.ttf");
+		}
+
 		* {
 			margin: 0;
 			padding: 0;
 			color: var( --black );
+			font-family: retro_gaming;
+		}
+
+		h1 {
+			font-size: 4em;
+		}
+
+		h2 {
+			font-size: 2.5em;
 		}
 
 		button {
@@ -27,6 +41,7 @@
 			padding: 10px;
 			background-color: var( --grey-2 );
 			color: var( --white );
+			font-size: 1.5em;
 		}
 
 			button:hover {
@@ -40,21 +55,51 @@
 			height: 100vh;
 			width: 100vw;
 			display: flex;
+			flex-direction: column;
 			align-items: center;
-			justify-content: center;
+			justify-content: space-between;
 		}
 
-			#homescreen > h1 {
-				position: absolute;
-				left: 50%;
-				top: 20px;
-				transform: translateX(-50%);
+			#title-container {
+				margin-top: 25px;
+				text-align: center;
+			}
+
+				#title-container > h1 {
+					width: 100%;
+					color: var( --grey-3 );
+				}
+
+				#title-container > h2 {
+					width: 100%;
+					color: var( --grey-3 );
+				}
+
+			#how-to {
+				background-color: var( --white );
+				padding: 50px;
+				font-size: 1.5em;
+				box-sizing: border-box;
+				max-width: 80vw;
 			}
 
 			#homescreen-menu {
 				background-color: var( --white );
 				padding: 50px;
 			}
+
+			#info-menu {
+				background-color: var( --white );
+				padding: 50px;
+				margin-bottom: 25px;
+				font-size: 1.5em;
+				box-sizing: border-box;
+				max-width: 80vw;
+			}
+
+				#info-menu > * {
+					margin: 10px 0;
+				}
 
 		/* SCENES */
 
@@ -115,11 +160,33 @@
 
 <body>
 	<div id="homescreen">
-		<h1>title</h1>
-		<div id="homescreen-menu">
-			<button id="start-btn">start</button>
+
+		<div id="title-container">
+			<h1>Dimensional Bug</h1>
+			<h2>By Felix Mariotto</h2>
 		</div>
+
+		<div id="how-to">
+			How to play :
+			<br>
+			Move the mouse to make the central cube switch dimension.
+			<br>
+			Press ESCAPE to pause.
+		</div>
+
+		<div id="homescreen-menu">
+			<button id="start-btn">please wait</button>
+		</div>
+
+		<div id="info-menu">
+			<div>This game was made with javascript and three.js.</div>
+			<div>It was release for the Mini-Jam edition 63, hosted on itch.io.</div>
+			<div>It was made in three days.</div>
+			<a href="https://github.com/felixmariotto/mini-jam-63" target="_blank">Game code on Github</a>
+		</div>
+
 	</div>
+
 	<div id="game-square-container">
 		<div id="scenes">
 			<div class="scene-mask left">
