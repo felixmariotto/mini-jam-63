@@ -14,10 +14,10 @@ const STUCK_DEBUG_FACTOR = 1;
 
 const HEIGHT_WATER = 10;
 
-// const PLAYER_START = { x: 0, y: 0 };
+const PLAYER_START = { x: 0, y: 0 };
 
 // before pit in lowland
-const PLAYER_START = { x: 442.49890471904735, y: -3.5453599483559244 }
+// const PLAYER_START = { x: 442.49890471904735, y: -3.5453599483559244 }
 
 // big pit 
 // const PLAYER_START = { x: 594.8873218419296, y: -58.53915946403395 }
