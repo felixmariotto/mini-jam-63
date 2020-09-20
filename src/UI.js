@@ -11,6 +11,10 @@ const domStartBtn = document.querySelector('#start-btn');
 const domSquareContainer = document.querySelector('#game-square-container');
 const domScenes = document.querySelector('#scenes');
 
+const domHow = document.querySelector('#how-to');
+const domInfo = document.querySelector("#info-menu");
+const domGameOver = document.querySelector('#game-over');
+
 let isGameOn = false;
 
 const mousePos = new THREE.Vector2();
@@ -58,6 +62,9 @@ function allowStart() {
 	domStartBtn.addEventListener('click', (e) => {
 
 		domStartBtn.innerHTML = 'resume';
+		domGameOver.style.display = 'none';
+		domHow.style.display = 'inherit';
+		domInfo.style.display = 'inherit';
 
 		GameManager.startGame();
 
@@ -89,7 +96,11 @@ function showHomescreen() {
 
 function showGameOver() {
 
-	domStartBtn.innerHTML = 'retry';
+	domHow.style.display = 'none';
+	domInfo.style.display = 'none';
+	domGameOver.style.display = 'inherit';
+
+	domStartBtn.innerHTML = 'Continue to last checkpoint';
 
 	domHomescreen.style.display = 'flex';
 

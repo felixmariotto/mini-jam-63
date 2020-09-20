@@ -14,7 +14,7 @@ const STUCK_DEBUG_FACTOR = 1;
 
 const HEIGHT_WATER = 10;
 
-const PLAYER_START = { x: 0, y: 0 };
+// const PLAYER_START = { x: 0, y: 0 };
 
 // before pit in lowland
 // const PLAYER_START = { x: 442.49890471904735, y: -3.5453599483559244 }
@@ -26,7 +26,7 @@ const PLAYER_START = { x: 0, y: 0 };
 // const PLAYER_START = { x: 720.7875469820851, y: -50.78986337442688 };
 
 // in lab
-// const PLAYER_START = { x: 807.823032832414, y: -58.53141556646165 };
+const PLAYER_START = { x: 807.823032832414, y: -58.53141556646165 };
 
 // before core pit
 // const PLAYER_START = { x: 869.4356118021891, y: 10.457127028329793 }
