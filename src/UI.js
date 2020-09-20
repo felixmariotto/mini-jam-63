@@ -79,6 +79,22 @@ function showHomescreen() {
 
 }
 
+function showGameOver() {
+
+	domStartBtn.innerHTML = 'retry';
+
+	domHomescreen.style.display = 'flex';
+
+}
+
+function showWinScreen() {
+
+	domStartBtn.innerHTML = 'replay';
+
+	domHomescreen.style.display = 'flex';
+
+}
+
 //
 
 function checkDimension() {
@@ -121,5 +137,7 @@ function checkDimension() {
 //
 
 export default {
-	checkDimension
+	checkDimension,
+	showGameOver,
+	showWinScreen
 }

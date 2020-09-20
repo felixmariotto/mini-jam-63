@@ -26,6 +26,22 @@ function pauseGame() {
 
 }
 
+function die() {
+
+	UI.showGameOver();
+
+	gameIsPaused = true;
+
+}
+
+function win() {
+
+	UI.showWinScreen();
+
+	gameIsPaused = true;
+
+}
+
 //
 
 function loop() {
@@ -57,5 +73,7 @@ function loop() {
 
 export default {
 	startGame,
-	pauseGame
+	pauseGame,
+	die,
+	win
 }

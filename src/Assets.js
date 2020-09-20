@@ -134,7 +134,7 @@ fileLoader.load( url, (file) => {
 	createBox( direction, Vec( 750, -37 ), Vec( 3, 20, 200 ), true );
 
 	// dangerous material
-	createBox( direction, Vec( 774, -65 ), Vec( 20, 5, 200 ), true, 0, true );
+	createBox( direction, Vec( 774, -65 ), Vec( 20, 5, 200 ), true, 0, { x: 734.5, y: -58.5 } );
 
 	// floor after first jump in second room
 	createBox( direction, Vec( 800, -65 ), Vec( 40, 10, 200 ), true );
@@ -162,6 +162,10 @@ fileLoader.load( url, (file) => {
 	createBox( direction, Vec( 834, 1.5 ), Vec( 15, 15, 200 ), true );
 	// right wall up
 	createBox( direction, Vec( 856, 1.5 ), Vec( 15, 15, 200 ), true );
+	// left wall harmful
+	createBox( direction, Vec( 833, -5 ), Vec( 15, 5, 200 ), true, null, { x: 806.5, y: -58.5 } );
+	// right wall harmful
+	createBox( direction, Vec( 857, -5 ), Vec( 15, 5, 200 ), true, null, { x: 806.5, y: -58.5 } );
 
 	// roof before big jump
 	createBox( direction, Vec( 895, 0 ), Vec( 10, 25, 200 ), true );
@@ -176,55 +180,55 @@ fileLoader.load( url, (file) => {
 	// right wall
 	createBox( direction, Vec( 955, -143.5 ), Vec( 60, 345, 200 ), true );
 	// floor
-	createBox( direction, Vec( 917, -820 ), Vec( 30, 10, 200 ), true );
+	createBox( direction, Vec( 917, -820 ), Vec( 30, 10, 200 ), true, 0, null, true );
 	// first obstacle
-	createBox( direction, Vec( 900, -24 ), Vec( 20, 20, 200 ), true );
+	createBox( direction, Vec( 900, -24 ), Vec( 20, 20, 200 ), true, 0, { x: 872, y: 10.4 } );
 	// second obstacle
-	createBox( direction, Vec( 922, -73 ), Vec( 25, 40, 200 ), true );
+	createBox( direction, Vec( 922, -73 ), Vec( 25, 40, 200 ), true, 0, { x: 872, y: 10.4 } );
 	// third obstacle ( double )
-	createBox( direction, Vec( 932, -160 ), Vec( 25, 70, 200 ), true );
-	createBox( direction, Vec( 900, -185 ), Vec( 20, 80, 200 ), true );
+	createBox( direction, Vec( 932, -160 ), Vec( 25, 70, 200 ), true, 0, { x: 908, y: -112.5 } );
+	createBox( direction, Vec( 900, -185 ), Vec( 20, 80, 200 ), true, 0, { x: 908, y: -112.5 } );
 	// fourth obstacle ( trap & narrow passage )
-	createBox( direction, Vec( 915, -270 ), Vec( 10, 40, 200 ), true );
-	createBox( direction, Vec( 900, -275 ), Vec( 20, 30, 200 ), true );
+	createBox( direction, Vec( 915, -270 ), Vec( 10, 40, 200 ), true, 0, { x: 908, y: -112.5 } );
+	createBox( direction, Vec( 900, -275 ), Vec( 20, 30, 200 ), true, 0, { x: 908, y: -112.5 } );
 
 	// pyramid pit
 
 	// FIRT LEVEL
 	// left wall
-	createBox( direction, Vec( 840, -370 ), Vec( 40, 150, 200 ), true );
+	createBox( direction, Vec( 840, -370 ), Vec( 40, 150, 200 ), true, 0, { x: 938.5, y: -332.5 } );
 	// right wall
-	createBox( direction, Vec( 980, -370 ), Vec( 30, 150, 200 ), true );
+	createBox( direction, Vec( 980, -370 ), Vec( 30, 150, 200 ), true, 0, { x: 938.5, y: -332.5 } );
 
 	// SECOND LEVEL
 	// left wall
-	createBox( direction, Vec( 855, -450 ), Vec( 40, 70, 200 ), true );
+	createBox( direction, Vec( 855, -450 ), Vec( 40, 70, 200 ), true, 0, { x: 938.5, y: -332.5 } );
 	// right wall
-	createBox( direction, Vec( 965, -450 ), Vec( 30, 70, 200 ), true );
+	createBox( direction, Vec( 965, -450 ), Vec( 30, 70, 200 ), true, 0, { x: 938.5, y: -332.5 } );
 
 	// THIRD LEVEL
 	// left wall
-	createBox( direction, Vec( 870, -520 ), Vec( 40, 70, 200 ), true );
+	createBox( direction, Vec( 870, -520 ), Vec( 40, 70, 200 ), true, 0, { x: 938.5, y: -332.5 } );
 	// right wall
-	createBox( direction, Vec( 950, -520 ), Vec( 30, 70, 200 ), true );
+	createBox( direction, Vec( 950, -520 ), Vec( 30, 70, 200 ), true, 0, { x: 938.5, y: -332.5 } );
 
 	// FOURTH LEVEL
 	// left wall
-	createBox( direction, Vec( 880, -590 ), Vec( 40, 70, 200 ), true );
+	createBox( direction, Vec( 880, -590 ), Vec( 40, 70, 200 ), true, 0, { x: 938.5, y: -332.5 } );
 	// right wall
-	createBox( direction, Vec( 940, -590 ), Vec( 30, 70, 200 ), true );
+	createBox( direction, Vec( 940, -590 ), Vec( 30, 70, 200 ), true, 0, { x: 938.5, y: -332.5 } );
 
 	// FIFTH LEVEL
 	// left wall
-	createBox( direction, Vec( 885, -660 ), Vec( 40, 70, 200 ), true );
+	createBox( direction, Vec( 885, -660 ), Vec( 40, 70, 200 ), true, 0, { x: 938.5, y: -332.5 } );
 	// right wall
-	createBox( direction, Vec( 935, -660 ), Vec( 30, 70, 200 ), true );
+	createBox( direction, Vec( 935, -660 ), Vec( 30, 70, 200 ), true, 0, { x: 938.5, y: -332.5 } );
 
 	// SIXTH LEVEL
 	// left wall
-	createBox( direction, Vec( 888, -755 ), Vec( 40, 120, 200 ), true );
+	createBox( direction, Vec( 888, -755 ), Vec( 40, 120, 200 ), true, 0, { x: 938.5, y: -332.5 } );
 	// right wall
-	createBox( direction, Vec( 932, -755 ), Vec( 30, 120, 200 ), true );
+	createBox( direction, Vec( 932, -755 ), Vec( 30, 120, 200 ), true, 0, { x: 938.5, y: -332.5 } );
 
 })
 
@@ -241,15 +245,15 @@ ThreeWorld.registerHeroMesh( heroMesh );
 
 // volume creator functions
 
-function createBox( world, position, dimension, isStatic, rotationZ, isHarmful ) {
+function createBox( world, position, dimension, isStatic, rotationZ, savePoint, isEnd ) {
 
 	let mesh;
 
 	rotationZ = rotationZ || 0;
 
-	if ( USE_HELPERS ) mesh = ThreeWorld.addBoxTo( world, position, dimension, rotationZ, isHarmful );
+	if ( USE_HELPERS ) mesh = ThreeWorld.addBoxTo( world, position, dimension, rotationZ, savePoint );
 
-	World.createBox( world, position, dimension, isStatic, rotationZ, mesh, isHarmful );
+	World.createBox( world, position, dimension, isStatic, rotationZ, mesh, savePoint, isEnd );
 
 };
 

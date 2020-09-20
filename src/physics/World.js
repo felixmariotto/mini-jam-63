@@ -14,8 +14,8 @@ const STUCK_DEBUG_FACTOR = 1;
 
 const HEIGHT_WATER = 10;
 
-// const PLAYER_START = { x: 0, y: 0 };
-const PLAYER_START = { x: 782.9992279615677, y: -58.526655741038745 };
+const PLAYER_START = { x: 0, y: 0 };
+// const PLAYER_START = { x: 938.5, y: -332.5 };
 
 // module aliases
 
@@ -111,13 +111,38 @@ function createWorld( name ) {
 
         const pairs = event.pairs;
 
+        // check if hero is colliding a harmful body or the body triggering the end
+        pairs.forEach( (pair) => {
+
+        	if (
+        		pair.bodyA === heroBody && pair.bodyB.savePoint ||
+        		pair.bodyB === heroBody && pair.bodyA.savePoint
+        	) {
+
+        		GameManager.die();
+
+        		putHeroOnSavepoint( pair.bodyB.savePoint || pair.bodyA.savePoint );
+
+        	} else if (
+        		pair.bodyA === heroBody && pair.bodyB.isEnd ||
+        		pair.bodyB === heroBody && pair.bodyA.isEnd
+        	) {
+
+        		GameManager.win();
+
+        		Matter.Body.setPosition( heroBody, { x: 0, y: 0 } );
+
+        	}
+
+        })
+
         // check if two pairs have heroBody + a static object
         if ( pairs.length > 1 ) {
 
         	let idx1 = pairs.findIndex( (pair) => {
         		return (
-        			pair.bodyA === heroBody && pair.bodyB.isStatic ||
-            	 	pair.bodyB === heroBody && pair.bodyA.isStatic
+        			( pair.bodyA === heroBody && pair.bodyB.isStatic ) ||
+            	 	( pair.bodyB === heroBody && pair.bodyA.isStatic )
             	)
         	})
 
@@ -170,7 +195,7 @@ function addBodyTo( engineName, mesh, shape, dimensions, options ) {
 }
 
 // called by Assets.createBox
-function createBox( engineName, position, dimension, isStatic, rotationZ, mesh, isHarmful ) {
+function createBox( engineName, position, dimension, isStatic, rotationZ, mesh, savePoint, isEnd ) {
 
 	const body = Bodies.rectangle(
 		position.x,
@@ -181,6 +206,10 @@ function createBox( engineName, position, dimension, isStatic, rotationZ, mesh, 
 	);
 
 	body.mesh = mesh;
+
+	body.savePoint = savePoint;
+
+	body.isEnd = isEnd;
 
 	Matter.Body.rotate( body, rotationZ );
 
@@ -196,6 +225,14 @@ function createHeroBody( mesh ) {
 	heroBody.isHero = true;
 
 	heroBody.mesh = mesh;
+
+}
+
+//
+
+function putHeroOnSavepoint( savePoint ) {
+
+	Matter.Body.setPosition( heroBody, savePoint );
 
 }
 
