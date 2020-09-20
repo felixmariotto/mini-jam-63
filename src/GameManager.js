@@ -1,6 +1,7 @@
 
 import UI from './UI.js';
 
+import './Map.js';
 import World from './physics/World.js'
 import ThreeWorld from './graphics/ThreeWorld.js';
 

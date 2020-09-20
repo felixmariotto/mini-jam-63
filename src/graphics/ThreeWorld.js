@@ -1,5 +1,73 @@
 
 import * as THREE from 'three';
+import { GLTFExporter } from 'three/examples/jsm/exporters/GLTFExporter.js';
+
+import Assets from '../Assets.js';
+
+// create download button to download the scene created in three.js
+
+function createDLButton() {
+
+	const dlBtn = document.createElement('download-btn');
+	dlBtn.style.position = 'fixed';
+	dlBtn.style.fontSize = '2em';
+	dlBtn.style.top = '0';
+	dlBtn.style.right = '0';
+	dlBtn.innerHTML = 'DOWNLOAD';
+	document.body.append( dlBtn )
+
+
+	dlBtn.onclick = () => {
+
+		// Instantiate a exporter
+		var exporter = new GLTFExporter();
+
+		// Parse the input and generate the glTF output
+		exporter.parse( scenes.top, function ( result ) {
+			
+			if ( result instanceof ArrayBuffer ) {
+
+				saveArrayBuffer( result, 'scene.glb' );
+
+			} else {
+
+				var output = JSON.stringify( result, null, 2 );
+				console.log( output );
+				saveString( output, 'scene.gltf' );
+
+			}
+
+		} );
+
+	}
+
+	function saveArrayBuffer( buffer, filename ) {
+
+		save( new Blob( [ buffer ], { type: 'application/octet-stream' } ), filename );
+
+	}
+
+	function saveString( text, filename ) {
+
+		save( new Blob( [ text ], { type: 'text/plain' } ), filename );
+
+	}
+
+	var link = document.createElement( 'a' );
+	link.style.display = 'none';
+	document.body.appendChild( link ); // Firefox workaround, see #6594
+
+	function save( blob, filename ) {
+
+		link.href = URL.createObjectURL( blob );
+		link.download = filename;
+		link.click();
+
+		// URL.revokeObjectURL( url ); breaks Firefox...
+
+	}
+
+}
 
 //
 
@@ -58,6 +126,22 @@ function createScene( name, canvas, backgroundColor ) {
 
 	});
 
+	// Add assets
+
+	Assets.globalScene.then( (model) => {
+
+		model.traverse( (child) => {
+
+			if ( child.material ) {
+				child.material = new THREE.MeshBasicMaterial({ color: BOX_COLORS[ name ] })
+			}
+
+		})
+
+		scene.add( model.clone() );
+
+	})
+
 	// TEMPORARY
 
 	const ambLight = new THREE.AmbientLight( 0xffffff, 0.2 );
@@ -71,6 +155,8 @@ function createScene( name, canvas, backgroundColor ) {
 	directionalLight2.position.y = -1;
 
 	scene.add( ambLight, directionalLight, directionalLight2 );
+
+	//
 
 	return scene
 
