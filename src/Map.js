@@ -225,7 +225,7 @@ function Vec( x, y, z ) {
 
 const heroMesh = new THREE.Mesh(
 	new THREE.BoxBufferGeometry( 3, 3, 3 ),
-	new THREE.MeshNormalMaterial()
+	new THREE.MeshBasicMaterial({ color: 0xf1f0ee })
 );
 
 World.createHeroBody( heroMesh );
