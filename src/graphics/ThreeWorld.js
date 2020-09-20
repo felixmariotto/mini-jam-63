@@ -4,6 +4,23 @@ import { GLTFExporter } from 'three/examples/jsm/exporters/GLTFExporter.js';
 
 import Assets from '../Assets.js';
 
+//
+
+const LINE_THRESHOLD_ANGLE_TERRAIN = 5;
+
+const USE_DEFAULT_COLOR = false;
+
+// textures
+
+const textureLoader = new THREE.TextureLoader();
+
+const TEXTURES = {
+	left: textureLoader.load( 'https://mini-jam-63.s3.eu-west-3.amazonaws.com/textures/dry-palette.png' ),
+	top: textureLoader.load( 'https://mini-jam-63.s3.eu-west-3.amazonaws.com/textures/water-palette.png' ),
+	right: textureLoader.load( 'https://mini-jam-63.s3.eu-west-3.amazonaws.com/textures/forest-palette.png' ),
+	bottom: textureLoader.load( 'https://mini-jam-63.s3.eu-west-3.amazonaws.com/textures/night_palette.png' )
+}
+
 // create download button to download the scene created in three.js
 
 function createDLButton() {
@@ -101,7 +118,7 @@ const scenes = {
 	bottom: createScene( 'bottom', domBottomCanvas, "#17191b" )
 };
 
-const camera = new THREE.PerspectiveCamera( 30, 1, 0.1, 200 );
+const camera = new THREE.PerspectiveCamera( 40, 1, 0.1, 500 );
 camera.position.copy( CAMERA_BASE_POSITION );
 camera.lookAt( 0, 0, 0 );
 
@@ -133,7 +150,29 @@ function createScene( name, canvas, backgroundColor ) {
 		model.traverse( (child) => {
 
 			if ( child.material ) {
-				child.material = new THREE.MeshBasicMaterial({ color: BOX_COLORS[ name ] })
+
+				if ( USE_DEFAULT_COLOR ) {
+
+					child.material = new THREE.MeshBasicMaterial({ color: BOX_COLORS[ name ] })
+
+				} else {
+
+					const map = child.material.map;
+
+					child.material = new THREE.MeshBasicMaterial({
+						map: TEXTURES[ name ],
+						color: 0xffffff
+					})
+
+				}
+
+				const edges = new THREE.EdgesGeometry( child.geometry, LINE_THRESHOLD_ANGLE_TERRAIN );
+				const line = new THREE.LineSegments( edges, new THREE.LineBasicMaterial( { color: 0xf1f0ee } ) );
+				
+				line.rotation.x = Math.PI / 2;
+
+				scene.add( line );
+
 			}
 
 		})
@@ -165,7 +204,7 @@ function createScene( name, canvas, backgroundColor ) {
 // create water in top scene
 
 const waterMesh = new THREE.Mesh(
-	new THREE.BoxBufferGeometry( 10000, 1000, 200 ),
+	new THREE.BoxBufferGeometry( 10000, 1000, 500 ),
 	new THREE.MeshBasicMaterial({ color: 0x28237b, side: THREE.DoubleSide })
 )
 
