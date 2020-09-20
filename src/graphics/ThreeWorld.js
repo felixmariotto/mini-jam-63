@@ -8,6 +8,8 @@ import Assets from '../Assets.js';
 
 const LINE_THRESHOLD_ANGLE_TERRAIN = 5;
 
+const LINE_THRESHOLD_ANGLE_DECO = 90;
+
 const USE_DEFAULT_COLOR = false;
 
 // textures
@@ -71,6 +73,7 @@ setInterval( () => {
 
 // create download button to download the scene created in three.js
 
+/*
 function createDLButton() {
 
 	const dlBtn = document.createElement('download-btn');
@@ -133,6 +136,7 @@ function createDLButton() {
 	}
 
 }
+*/
 
 //
 
@@ -142,6 +146,13 @@ const BOX_COLORS = {
 	left: "#f06c00",
 	right: '#238531',
 	bottom: '#2a3747'
+}
+
+const DECO_COLORS = {
+	top: "#2f7e83",
+	left: "#f06c00",
+	right: '#72cb25',
+	bottom: '#586c79'
 }
 
 const HEIGHT_WATER = 10;
@@ -240,6 +251,53 @@ function createScene( name, canvas, backgroundColor ) {
 		clone.traverse( (child) => {
 
 			if ( child.material ) child.material = DANGEROUS_MATERIAL
+
+		})
+
+	});
+
+	// add special asset
+
+	let asset;
+
+	switch ( name ) {
+
+	case 'top' :
+		asset = Assets.assetTop;
+		break;
+
+	case 'right' :
+		asset = Assets.assetRight;
+		break;
+
+	case 'bottom' :
+		asset = Assets.assetBottom;
+		break;
+
+	case 'left' :
+		asset = Assets.assetLeft;
+		break;
+
+	};
+
+	asset.then( (model) => {
+
+		scene.add( model );
+
+		model.traverse( (child) => {
+
+			if ( child.material ) {
+
+				child.material = new THREE.MeshBasicMaterial({ color: DECO_COLORS[ name ] })
+
+				const edges = new THREE.EdgesGeometry( child.geometry, LINE_THRESHOLD_ANGLE_DECO );
+				const line = new THREE.LineSegments( edges, new THREE.LineBasicMaterial( { color: 0xf1f0ee } ) );
+				
+				line.rotation.x = Math.PI / 2;
+
+				scene.add( line );
+
+			}
 
 		})
 
