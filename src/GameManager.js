@@ -59,6 +59,8 @@ function loop() {
 
 	lastTime = nowTime;
 
+	if ( deltaTime > 100 ) deltaTime = 100;
+
 	// CHECK IN WHAT DIMENSION THE HERO IS
 
 	const dimension = UI.checkDimension();

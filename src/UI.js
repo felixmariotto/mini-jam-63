@@ -67,6 +67,14 @@ function positionMasks( e ) {
 
 //
 
+function allowStart() {
+
+	console.log('can start')
+
+}
+
+//
+
 function hideHomescreen() {
 
 	domHomescreen.style.display = 'none';
@@ -139,5 +147,6 @@ function checkDimension() {
 export default {
 	checkDimension,
 	showGameOver,
-	showWinScreen
+	showWinScreen,
+	allowStart
 }
